@@ -75,7 +75,7 @@ def MergeSortRecursive (arr, k):
 
 # testing some random arrays to help you check correctness
 if __name__ == "__main__":
-    listN = np.arange(100, 10101, 1000)
+    listN = np.arange(100, 10001, 1000)
     valuesK = {}
 
     for n in listN:
