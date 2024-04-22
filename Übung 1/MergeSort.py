@@ -1,4 +1,8 @@
 import random
+import math
+import numpy as np
+import datetime
+from matplotlib import pyplot as plt
 
 
 def SplitArrayIntoEvenParts (a, n):
@@ -71,6 +75,30 @@ def MergeSortRecursive (arr, k):
 
 # testing some random arrays to help you check correctness
 if __name__ == "__main__":
+    listN = np.arange(100, 10101, 1000)
+    valuesK = {}
+
+    for n in listN:
+        print(n)
+        listK = [2, 3, int(math.log2(n)), n//4]
+        arr = [random.randint(0, 10000) for i in range(n)]
+
+        for idx, k in enumerate(listK):
+            anfang = datetime.datetime.now()
+            MergeSortRecursive(arr, k)
+            if idx not in valuesK:
+                valuesK[idx] = []
+            valuesK[idx].append((datetime.datetime.now() - anfang).total_seconds())
+    
+    listLabel = ["k=2", "k=3", "k=log2(n)", "k=n/4"]
+    for k in valuesK:
+        plt.plot(listN, valuesK[k], label=listLabel[k])
+    plt.legend()
+    plt.show()
+    print("fertig")
+
+
+    """
     n = 1000
     k_limit = 20
     for k in range(2, k_limit):
@@ -79,3 +107,4 @@ if __name__ == "__main__":
         if not sorted_arr == sorted(arr):
             raise Exception("Didn't Sort Correctly!")
     print("seems to work")
+    """
