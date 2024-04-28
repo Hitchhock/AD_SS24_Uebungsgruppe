@@ -1,7 +1,14 @@
+"""
+    Ayiza Muzaffar - am819 - 5136283
+    Berthold Dominique Buri - bb268 - 4744252
+    Henry Juncker - hj84 - 5605330
+"""
+
+
 import random
 import math
 import numpy as np
-import datetime
+import time
 from matplotlib import pyplot as plt
 
 
@@ -84,11 +91,11 @@ if __name__ == "__main__":
         arr = [random.randint(0, 10000) for i in range(n)]
 
         for idx, k in enumerate(listK):
-            anfang = datetime.datetime.now()
+            anfang = time.perf_counter()
             MergeSortRecursive(arr, k)
             if idx not in valuesK:
                 valuesK[idx] = []
-            valuesK[idx].append((datetime.datetime.now() - anfang).total_seconds())
+            valuesK[idx].append((time.perf_counter() - anfang).total_seconds())
     
     listLabel = ["k=2", "k=3", "k=log2(n)", "k=n/4"]
     for k in valuesK:
